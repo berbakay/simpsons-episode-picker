@@ -1,38 +1,54 @@
+html {
+  background-image: url("https://external-preview.redd.it/YcPWZoxF3HQW_xxYYVFEedax-ST54uUQSyxYHg9gt8g.png?auto=webp&s=21d993102b920166c67acd31bbe7e7ffb0b18f47");
+  background-color: #009ddc;
+  background-size: cover;
+}
+
+.logo {
+  margin-top: 10px;
+  max-width: 30%;
+}
+
 .App {
   text-align: center;
+  max-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+td {
+  font-family: sans-serif;
+  color: white;
+  border: 1px solid white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+table {
+  border-collapse: collapse;
+  max-width: 80%;
+  margin: auto;
+  background-color: #5c75c2;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  border: 1px solid black;
+  margin: 1rem;
+  color: white;
+  font-weight: bold;
+  margin-right: 0rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.willie {
+  max-height: 75px;
+  display: inline-block;
+}
+
+p {
+  color: white
 }
