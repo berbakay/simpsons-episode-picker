@@ -11,7 +11,7 @@ html {
 
 .App {
   text-align: center;
-  max-height: 100vh;
+  height: 100vh;
 }
 
 td {
@@ -32,7 +32,19 @@ a {
   color: white;
 }
 
-button {
+.goodButton {
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+  background-color: green;
+  border: 1px solid black;
+  margin: 1rem;
+  color: white;
+  font-weight: bold;
+  margin-right: 0rem;
+}
+
+.badButton {
   border-radius: 100%;
   height: 100px;
   width: 100px;
@@ -40,7 +52,7 @@ button {
   border: 1px solid black;
   margin: 1rem;
   color: white;
-  font-weight: bold;
+  font-weight: bolder;
   margin-right: 0rem;
 }
 
@@ -50,5 +62,9 @@ button {
 }
 
 p {
+  color: white
+}
+
+label {
   color: white
 }

@@ -9,23 +9,33 @@ class Episode extends React.Component {
         isLoading: true
     }
 
-    componentDidMount() {
-        axios.get('https://simpsons-api-berbakay.herokuapp.com/api/episode')
-        .then((res) => {
-            this.setState(() => {
-                return {episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false}
+    getEpisode = () => {
+        if(this.props.goodEpisode === undefined) {
+            axios.get('https://simpsons-api-berbakay.herokuapp.com/api/episode')
+            .then((res) => {
+                this.setState(() => {
+                    return {episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false}
+                })
             })
-        })
+        } else {
+            axios.get(`https://simpsons-api-berbakay.herokuapp.com/api/episode?isGood=${this.props.goodEpisode}`)
+            .then((res) => {
+                this.setState(() => {
+                    return {episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false}
+                })
+            })
+        }
+    }
+
+    componentDidMount() {
+        this.getEpisode();
     }
 
     componentDidUpdate() {
         if(this.props.getNewEp === true) { 
             this.setState({isLoading: true})
             this.props.setNewEpFalse()
-            axios.get('https://simpsons-api-berbakay.herokuapp.com/api/episode')
-            .then((res) => {       
-                this.setState({episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false})
-            })
+            this.getEpisode();
         }
     }
 
