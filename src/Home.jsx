@@ -6,7 +6,8 @@ class Home extends React.Component {
     state = {
         getNewEp: false,
         buttonClicked: false,
-        goodEpisode: undefined
+        goodEpisode: undefined,
+        toggleToggled: false,
     }
 
     setNewEpFalse = () => {
@@ -14,6 +15,12 @@ class Home extends React.Component {
     }
 
     handleClick = () => {
+        if(this.state.toggleToggled) {
+            this.setState({goodEpisode: 'true'})
+        } else {
+            this.setState({goodEpisode: undefined})
+        }
+
         if(this.state.buttonClicked) {
             this.setState({getNewEp: true})
         } else {
@@ -30,11 +37,10 @@ class Home extends React.Component {
     }
 
     handleGood = (event) => {
-        console.log(this.state.goodEpisode)
-        if(this.state.goodEpisode === undefined) {
-            this.setState({goodEpisode: event.target.value})
-        } else if (this.state.goodEpisode === 'true') {
-            this.setState({goodEpisode: undefined})
+        if(this.state.toggleToggled) {
+            this.setState({toggleToggled: false, goodEpisode: undefined})
+        } else {
+            this.setState({toggleToggled: true, goodEpisode: 'true'})
         }
     }
 
