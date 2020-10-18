@@ -11,14 +11,14 @@ class Episode extends React.Component {
 
     getEpisode = () => {
         if(this.props.goodEpisode === undefined) {
-            axios.get('https://simpsons-api-berbakay.herokuapp.com/api/episode')
+            axios.get(`https://simpsons-api-berbakay.herokuapp.com/api/episode?minSeason=${this.props.seasonRange[0]}&maxSeason=${this.props.seasonRange[1]}`)
             .then((res) => {
                 this.setState(() => {
                     return {episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false}
                 })
             })
         } else {
-            axios.get(`https://simpsons-api-berbakay.herokuapp.com/api/episode?isGood=${this.props.goodEpisode}`)
+            axios.get(`https://simpsons-api-berbakay.herokuapp.com/api/episode?isGood=${this.props.goodEpisode}&minSeason=${this.props.seasonRange[0]}&maxSeason=${this.props.seasonRange[1]}`)
             .then((res) => {
                 this.setState(() => {
                     return {episode: res.data.episodeData, characters: res.data.episodeData.characters, isGood: res.data.episodeData.good.toString(), isLoading: false}

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Router, Link} from '@reach/router'
 import Episode from './Episode';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
 class Home extends React.Component {
     state = {
@@ -8,6 +11,7 @@ class Home extends React.Component {
         buttonClicked: false,
         goodEpisode: undefined,
         toggleToggled: false,
+        value: [1, 30],
     }
 
     setNewEpFalse = () => {
@@ -44,16 +48,38 @@ class Home extends React.Component {
         }
     }
 
+    handleSlider = (event, newValue) => {
+        this.setState({value: newValue})
+    }
+
+    valueText = (value) => {
+        return `Season ${this.state.value}`
+    }
+
     render() {
         return (
-        <div><label>Do You Want a good episode?</label>
+        <div>
+            <label>Do You Want a good episode?</label>
             <input type="checkbox" value="true" onClick={this.handleGood}/>
             <Link to="/episode">
             <button className="goodButton" onClick={this.handleClick}>Get a Random Episode</button>
             <button className="badButton" onClick={this.handleBadClick}>Do Not Touch, Willie</button>
             </Link>
+            <div className="sliderDiv">
+                <Typography id="range-slider" gutterBottom>
+                    Season Range
+                </Typography>
+                <Slider
+                    value={this.state.value}
+                    onChange={this.handleSlider}
+                    valueLabelDisplay="on"
+                    aria-labelledby="range-slider"
+                    getAriaValueText={this.valueText}
+                    max={30}
+                    min ={1}/>
+            </div>
             {this.state.buttonClicked ? <Router>
-                <Episode id="episodeBox"path='/episode' getNewEp={this.state.getNewEp} setNewEpFalse={this.setNewEpFalse} goodEpisode={this.state.goodEpisode}/>
+                <Episode id="episodeBox"path='/episode' getNewEp={this.state.getNewEp} setNewEpFalse={this.setNewEpFalse} goodEpisode={this.state.goodEpisode} seasonRange = {this.state.value}/>
             </Router> : null }
             
         </div>
